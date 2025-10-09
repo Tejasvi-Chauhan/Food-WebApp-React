@@ -1,0 +1,30 @@
+{
+  "name": "food-web",
+  "version": "1.0.0",
+  "description": "Frontend by react",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build Index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tejasvi-Chauhan/Food-WebApp-React.git"
+  },
+  "keywords": [
+    "React"
+  ],
+  "author": "Tejasvi Chauhan",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^6.30.1"
+  },
+  "browserslist": [
+    "last 2 version"
+  ]
+}
