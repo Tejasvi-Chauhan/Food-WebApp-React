@@ -5,6 +5,10 @@ const About=()=>{
     return(
         <div className="about">
             <h1>This is About Us Page</h1>
+            <h1 className="text-3xl font-bold underline text-blue-600">
+        This is About Us Page
+      </h1>
+
             
             <div className="user-details">
             <UserClass/>

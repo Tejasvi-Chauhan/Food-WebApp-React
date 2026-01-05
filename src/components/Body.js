@@ -1,7 +1,9 @@
-import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import RestaurantCard ,{withpromotedlabel} from "./RestaurantCard";
+import { useState, useEffect,useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -9,6 +11,10 @@ const Body = () => {
   const [filteredRestaurent, setFilteredRestaurent] = useState([]);
 
   const [searchtext, setSearchText] = useState("");
+
+  const RestaurentCardWithLabel=withpromotedlabel(RestaurantCard);
+
+  const {LoggedInUser,setusername}=useContext(UserContext);
 
   useEffect(() => {
     fetchData();
@@ -35,15 +41,17 @@ const Body = () => {
     // );
     setFilteredRestaurent(restaurants);
   };
+  const onlineStatus = useOnlineStatus();
+  if(onlineStatus===false) return <h1>🔴 Offline, Please check your internet connection!!</h1>
 
   return restaurantList.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="filter">
+    <div className="body bg-pink-50">
+      <div className="filter flex  m-4 gap-20">
         <div className="filter-btns">
           <button
-            className="btn"
+            className="btn bg-red-300 p-2 m-2 rounded-lg hover:bg-red-400 w-2xs cursor-pointer"
             onClick={() => {
               let filteredRestaurent = restaurantList.filter(
                 (res) => res.info.avgRating > 4.0
@@ -54,18 +62,22 @@ const Body = () => {
           >
             Top Rated Restaurants
           </button>
+        
         </div>
-        <div className="search">
+
+
+
+        <div className="search ">
           <input
             type="text"
-            className="search-box"
+            className="search-box border-2 border-pink-300 p-2 m-2 rounded-4xl hover:border-pink-500 w-2xs"
             value={searchtext}
             onChange={(event) => {
               setSearchText(event.target.value);
             }}
           />
           <button
-            className="btn"
+            className="btn  bg-red-300 px-5 py-2 m-2 rounded-lg hover:bg-red-400 cursor-pointer" 
             onClick={() => {
               let filterRes = restaurantList.filter((res) =>
                 res.info.name.toLowerCase().includes(searchtext.toLowerCase())
@@ -81,16 +93,22 @@ const Body = () => {
             Search
           </button>
         </div>
+          <label>User Name :</label>
+          <input type="text" value={LoggedInUser} onChange={(e)=>{
+              setusername(e.target.value)
+          }} className=" border-2 p-2 "/>
+
       </div>
 
-      <div className="card-container">
+      <div className="card-container flex flex-wrap gap-4 justify-center">
         {filteredRestaurent.map((restaurant) => (
           <Link
             key={restaurant.info.id}
             to={"/restaurent/" + restaurant.info.id}
-          >
-            
-            <RestaurantCard resData={restaurant} />
+          >{
+            restaurant.info.promoted ?< RestaurentCardWithLabel resData={restaurant} /> :< RestaurantCard resData={restaurant}/>
+          }
+                                  
           </Link>
         ))}
       </div>
