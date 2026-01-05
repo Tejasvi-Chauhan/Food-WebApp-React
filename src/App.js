@@ -27,7 +27,7 @@ const AppLayout = () => {
   const [username, setusername]=useState();
   useEffect(()=>{
   const data={
-    name:"TS Chohan",
+    name:"Demo Data ",
   }
   setusername(data.name);
   },[])
