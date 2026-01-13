@@ -8,6 +8,10 @@ const About=()=>{
             <h1 className="text-3xl font-bold underline text-blue-600">
         This is About Us Page
       </h1>
+            <div className="user-details">
+            <User/>
+            </div>
+            
 
             
             <div className="user-details">
