@@ -196,3 +196,68 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 } */
+/* Container jo cards ko grid mein dikhayega */
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Main Card */
+.shimmer-card {
+  width: 250px;
+  height: 300px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Animation Setup */
+.animate {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, #eff1f3 4%, #e2e2e2 25%, #eff1f3 36%);
+  background-size: 1000px 100%;
+}
+
+/* Image Placeholder */
+.shimmer-image {
+  height: 140px;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Text Lines */
+.shimmer-title {
+  height: 20px;
+  width: 80%;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.shimmer-rating {
+  height: 15px;
+  width: 40%;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.shimmer-address {
+  height: 15px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+/* Keyframes for Movement */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
